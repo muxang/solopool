@@ -4909,9 +4909,9 @@ out_unlock:
 }
 
 // add by chairs
-static void client_apply_mindiff_override(stratum_instance_t *client)
+static void client_apply_mindiff_override(stratum_instance_t  *client)
 {
-    pool_t *ckp = client->ckp;
+    ckpool_t *ckp = client->ckp;
 
     // 检查必要的条件，如果没有定义覆盖规则或用户代理为空，则直接返回
     if (!ckp->n_mindiff_overrides || !client->useragent || !*client->useragent)
