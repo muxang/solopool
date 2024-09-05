@@ -1432,7 +1432,7 @@ static void parse_mindiff_overrides(ckpool_t *ckp, json_t *obj, const size_t n_k
 
     mindiff_override_t *arr = ckzalloc(sizeof(mindiff_override_t) * n_keys);
     if (!arr) {
-        LOGERROR("Failed to allocate memory for mindiff_overrides array.");
+        LOGERR("Failed to allocate memory for mindiff_overrides array.");
         return;
     }
 
@@ -1460,7 +1460,7 @@ static void parse_mindiff_overrides(ckpool_t *ckp, json_t *obj, const size_t n_k
             // 复制 useragent，并处理内存分配失败的情况
             arr[n_ok].useragent = strdup(useragent);
             if (!arr[n_ok].useragent) {
-                LOGERROR("Failed to allocate memory for useragent \"%s\"", useragent);
+                LOGERR("Failed to allocate memory for useragent \"%s\"", useragent);
                 continue;
             }
 
@@ -1483,7 +1483,7 @@ static void parse_mindiff_overrides(ckpool_t *ckp, json_t *obj, const size_t n_k
         ckp->mindiff_overrides = realloc(arr, sizeof(mindiff_override_t) * n_ok);
         if (unlikely(!ckp->mindiff_overrides)) {
             // realloc 失败时，记录错误日志，并使用原始分配的数组
-            LOGERROR("Failed to realloc memory for mindiff_overrides, using original array.");
+            LOGERR("Failed to realloc memory for mindiff_overrides, using original array.");
             ckp->mindiff_overrides = arr;
         }
 
